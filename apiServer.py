@@ -19,7 +19,8 @@ class firstPost(Resource):
         parser.add_argument("arg", type=str, default="It works")
         args = parser.parse_args()
         arg = args['arg']
-        print(arg)
+        retValue = {"key": "Haha Vayo hai guyz::: {} :: :D".format(arg)}
+        return retValue
 
 
 # welcome page
