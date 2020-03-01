@@ -5,7 +5,8 @@ class Demo extends Component {
         super(props);
         this.state = {
             user: '',
-            posts: ""
+            posts: "",
+            result: ''
         }
         this.postData = this.postData.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -24,6 +25,10 @@ class Demo extends Component {
                 arg: val
             })
         })
+        .then(response => response.json())
+        .then(response => this.setState({
+            result: response.key
+        }))
     }
 
     handleChange(event) {
@@ -48,6 +53,7 @@ class Demo extends Component {
         return (
             <>
                 <div>{this.state.user}</div>
+                <div>{this.state.result}</div>
                 <form onSubmit={this.onSubmit}>
                     <label>
                       Name:
