@@ -6,19 +6,19 @@ export default function Staff() {
     <div style={{ maxWidth: "100%" }}>
         <Table
           columns={[
-            { title: "Adı", field: "name" },
-            { title: "Soyadı", field: "surname" },
-            { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
+            { title: "Name", field: "name" },
+            { title: "Status",
+              field: "status",
+            },
             {
-              title: "Doğum Yeri",
-              field: "birthCity",
-              lookup: { 34: "İstanbul", 63: "Şanlıurfa" }
+              title: "Role",
+              field: "role"
             }
           ]}
           data={[
-            { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 }
+            { name: "Safal Bastola", status: "Present", role: "Accountant"}
           ]}
-          title="Demo Title"
+          title="Staff"
         />
     </div>
   )

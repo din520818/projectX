@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Table from 'material-table';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -12,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         margin: theme.spacing(2),
+    },
+    buttons: {
+        marginTop: '10px'
+    },
+    buttonItem: {
+        marginRight: '8px'
     }
   }));
   
@@ -25,19 +32,25 @@ return (
         </form>
         <Table
           columns={[
-            { title: "Adı", field: "name" },
-            { title: "Soyadı", field: "surname" },
-            { title: "Doğum Yılı", field: "birthYear", type: "numeric" },
+            { title: "#", field: "itemNo", type: "numeric", width: "12px" },
+            { title: "Item", field: "item" },
+            { title: "Quantity", field: "quantity", type: "numeric" },
             {
-              title: "Doğum Yeri",
-              field: "birthCity"
+              title: "Price",
+              field: "price",
+              type: "numeric"
             }
           ]}
           data={[
-            { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 }
+            { itemNo: 1, item: "Coke", quantity: 7, price: 550 },
+            { itemNo: 2, item: "Apple", quantity: 15, price: 200 }
           ]}
-          title="Demo Title"
+          title="Items"
         />
+        <div className={classes.buttons}>
+            <Button className={classes.buttonItem} variant="contained">Print</Button>
+            <Button className={classes.buttonItem} variant="contained" color="primary">Pay</Button>
+        </div>
     </div>
 );
 }

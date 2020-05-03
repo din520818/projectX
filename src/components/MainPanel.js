@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +9,11 @@ import Products from './Products';
 import Staff from './Staff';
 import Categories from './Categories';
 import Transactions from './Transactions';
+import { Paper } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import ListIcon from '@material-ui/icons/List'
+import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
+import PeopleIcon from '@material-ui/icons/People'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,14 +63,20 @@ export default function MainPanel() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Products" {...a11yProps(0)} />
-          <Tab label="Categories" {...a11yProps(1)} />
-          <Tab label="Transactions" {...a11yProps(2)} />
-          <Tab label="Staff" {...a11yProps(3)} />
+      <Paper square>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="Tabs"
+          variant="fullWidth"
+          indicatorColor="primary"
+          textColor="primary">
+          <Tab icon={<ShoppingCartIcon/>} label="Products" {...a11yProps(0)} />
+          <Tab icon={<ListIcon/>} label="Categories" {...a11yProps(1)} />
+          <Tab icon={<CompareArrowsIcon/>} label="Transactions" {...a11yProps(2)} />
+          <Tab icon={<PeopleIcon/>} label="Staff" {...a11yProps(3)} />
         </Tabs>
-      </AppBar>
+      </Paper>
       <TabPanel value={value} index={0}>
         <Products/>
       </TabPanel>

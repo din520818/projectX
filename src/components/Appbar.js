@@ -31,7 +31,7 @@ export default function AppDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            BillingSoft
           </Typography>
           <Button color="inherit">Logout</Button>
         </Toolbar>

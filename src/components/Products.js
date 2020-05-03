@@ -6,7 +6,7 @@ export default function Products() {
     <div style={{ maxWidth: "100%" }}>
         <Table
           columns={[
-            { title: "#", field: "itemNo", type: "numeric" },
+            { title: "#", field: "itemNo", type: "numeric", width:"15px" },
             { title: "Item", field: "item" },
             { title: "Price", field: "price", type: "numeric" },
             {
