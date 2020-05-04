@@ -16,7 +16,7 @@ import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import PeopleIcon from '@material-ui/icons/People'
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, ...other } = props
 
   return (
     <Typography

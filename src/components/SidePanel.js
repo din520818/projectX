@@ -1,8 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Table from 'material-table';
-import { Button } from '@material-ui/core';
+import React, {useContext} from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Table from 'material-table'
+import { Button } from '@material-ui/core'
+import {CartContext} from './cartContext';
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -23,7 +24,9 @@ const useStyles = makeStyles((theme) => ({
   }));
   
 export default function SidePanel() {
-const classes = useStyles();
+
+  const [cart, setCart] = useContext(CartContext)
+  const classes = useStyles();
 
 return (
     <div className={classes.root}>
@@ -41,10 +44,16 @@ return (
               type: "numeric"
             }
           ]}
-          data={[
-            { itemNo: 1, item: "Coke", quantity: 7, price: 550 },
-            { itemNo: 2, item: "Apple", quantity: 15, price: 200 }
-          ]}
+          data={
+            cart.map(item => (
+              {
+                itemNo:1,
+                item: item.item,
+                price: item.price,
+                quantity: 1
+              }
+            ))
+          }
           title="Items"
         />
         <div className={classes.buttons}>
