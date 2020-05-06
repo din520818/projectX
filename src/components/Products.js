@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import Table from "material-table"
 import AddIcon from '@material-ui/icons/Add'
 import ClearAllIcon from '@material-ui/icons/ClearAll'
@@ -7,10 +7,38 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import SearchIcon from '@material-ui/icons/Search'
-import {CartContext} from './cartContext';
+import {CartContext} from './cartContext'
+import {APIURL} from '../config/CONFIG.json';
 
 export default function Products() {
   const [cart, setCart] = useContext(CartContext)
+  // const [products, setProducts] = useContext(ProductContext)
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch(`${APIURL}/products`)
+      .then(res => res.json())
+      .then(data => setProducts(data))
+  },[])
+
+  function qcheck(rowitem) {
+    const qvalue = cart.filter(item => item.item == rowitem.item)
+    if (qvalue.length == 0) {
+      setCart([
+        ...cart,
+        {
+          item:rowitem.item,
+          price:rowitem.price,
+          quantity:1
+        }
+      ])
+    }
+    else {
+      setCart([
+      ])
+    }
+  }
+
   return (
     <div style={{ maxWidth: "100%" }}>
         <Table
@@ -27,7 +55,7 @@ export default function Products() {
             {
               icon: '+',
               tooltip: 'Add Item',
-              onClick: (event, rowData) => setCart([...cart, {item:rowData.item, price:rowData.price, quantity: 1}])
+              onClick: (event, rowData) => qcheck(rowData)
             }
           ]}
           columns={[
@@ -39,13 +67,16 @@ export default function Products() {
               field: "stock"
             }
           ]}
-          data={[
-            { itemNo: 1, item: "Cake", price: 550, stock: 79 },
-            { itemNo: 2, item: "Icecream", price: 85, stock: 43 },
-            { itemNo: 3, item: "Coke", price: 50, stock: 88 },
-            { itemNo: 4, item: "Apple", price: 25, stock: 656 },
-            { itemNo: 5, item: "Frooti", price: 55, stock: 66 }
-          ]}
+          data={
+            products.map(product => (
+              {
+                itemNo: 1,
+                item: product.item,
+                price: product.price,
+                stock: product.stock
+              }
+            ))
+          }
           title="All products"
         />
     </div>
