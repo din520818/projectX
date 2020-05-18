@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Table from "material-table"
+import React, {useState, useEffect} from 'react'
+import MaterialTable from "material-table"
 import {APIURL} from '../config/CONFIG.json';
 
 export default function Staff() {
@@ -13,31 +13,41 @@ export default function Staff() {
 
   return (
     <div style={{ maxWidth: "100%" }}>
-        <Table
-          columns={[
-            { title: "Name",
-              field: "name" 
-            },
-            {
-              title: "Status",
-              field: "status",
-            },
-            {
-              title: "Role",
-              field: "role"
-            }
-          ]}
-          data={
-            people.map(person => (
+        <MaterialTable
+        title="Staff"
+        columns={[
+          { title: 'Staff Id', field: 'staffId' },
+          { title: 'Name', field: 'name' },
+          {
+            title: 'Status',
+            field: 'status',
+          },
+          {
+            title: 'Role',
+            field: 'role',
+          },
+        ]}
+        data={[
               {
-                name: person.name,
-                status: person.status,
-                role: person.role
+                name: "Safal Bastola",
+                staffId: 1,
+                status: "Present",
+                role: "Accountant"
+              },
+              {
+                name: "Dinesh Bhusal",
+                staffId: 2,
+                status: "Present",
+                role: "Accountant"
+              },
+              {
+                name: "Pradeep Banjade",
+                staffId: 3,
+                status: "Present",
+                role: "Manager"
               }
-            ))
-          }
-          title="Staff"
-        />
+        ]}
+      />
     </div>
   )
 }

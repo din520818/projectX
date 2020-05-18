@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import AppDrawer from './Drawer';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,20 +22,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AppDrawer() {
+export default function MenuBar() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
+          <AppDrawer/>
           <Typography variant="h6" className={classes.title}>
-            BillingSoft
+            <Button component={Link} to='/'> BillingSoft </Button>
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" component={Link} to='/login'>Logout</Button>
         </Toolbar>
       </AppBar>
     </div>

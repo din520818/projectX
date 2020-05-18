@@ -2,7 +2,7 @@ import React from 'react'
 import {Grid} from '@material-ui/core'
 import MainPanel from '../components/MainPanel'
 import SidePanel from '../components/SidePanel'
-import AppDrawer from '../components/Appbar'
+import AppBar from '../components/Appbar'
 import {CartProvider} from '../components/cartContext';
 
 // function handleClick(event, rowData) {
@@ -19,7 +19,6 @@ export default function Home() {
     return (
         <CartProvider>
             <div>
-                <AppDrawer/>
                 <Grid container>
                     <Grid item xs={4}>
                         <SidePanel/>
